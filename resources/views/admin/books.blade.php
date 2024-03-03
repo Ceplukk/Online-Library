@@ -205,7 +205,7 @@
 
                         <div class="d-flex justify-content-center">
                             <input type="submit" class="btn btn-success col col-md-3" name="store"
-                                value="Add Book"></input>
+                                value="Save Changes"></input>
                         </div>
                     </form>
                 </div>

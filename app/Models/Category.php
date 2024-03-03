@@ -13,6 +13,6 @@ class Category extends Model
     protected $guarded = ['id'];
     public function book()
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class, 'category_id', 'id');
     }
 }

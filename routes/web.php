@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +24,10 @@ use App\Http\Controllers\BooksController;
 Route::controller(AuthController::class)->group(function () {
 
     Route::get('register', 'indexRegis')->name('register');
-    Route::post('register', 'registStore')->name('FormRegis');
+    Route::post('register', 'register')->name('FormRegis');
     Route::get('login', 'indexLog')->name('login');
-    Route::post('login', 'loginUser')->name('FormLogin');
+    Route::post('login', 'login')->name('FormLogin');
+    Route::post('logout', 'logout')->name('logout');
 });
 
 Route::controller(AdminController::class)->group(function () {
@@ -43,4 +46,19 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('admin/books', 'books')->name('admin.books');
 });
 
+Route::controller(LibraryController::class)->group(function () {
+    Route::get('/', 'index')->name('online.library');
+    Route::get('/product-details/{book_id}', 'productDetails')->name('product.details');
+    Route::get('/collections', 'collections')->name('collections');
+    Route::get('/collections-category/{category}', 'collectionsByCategory')->name('collections.category');
+    Route::get('/collections-author/{author}', 'collectionsByAuthor')->name('collections.author');
+});
+
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/profile', 'index')->name('profile')->middleware('auth');
+});
+
+Route::get('/contact', function () {
+    return view('main.contact');
+})->name('contact_us');
 

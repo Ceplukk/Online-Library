@@ -32,6 +32,29 @@ class DatabaseSeeder extends Seeder
         //     'pdf' => 'apaan'
         // ]);
 
+        User::create([
+            'name'     => 'admin',
+            'username' => 'admin',
+            'email'    => 'admin@gmail.com',
+            'password' => 'password',
+            'level' => 'admin'
+        ]);
+        User::create([
+            'name'     => 'yazid',
+            'username' => 'yazid',
+            'email'    => 'yazid@gmail.com',
+            'password' => 'password',
+            'job'      => 'Full Stack Developer',
+            'phone'    => '08977651650',
+            'location' => 'Jakarta, Indonesia',
+            'bio'      => 'Aku belum punya pacar :(',
+            'instagram'=> '@yazid_mauln',
+            'facebook' => 'yazid ganteng',
+            'twitter'  => 'Programmernya mamah papah',
+            'github'   => 'Ceplukk (Yazid Maulana Rizky)',
+            'level' => 'user'
+        ]);
+        
         Author::create([
             'name' => 'Alvy Syahrin'
         ]);
@@ -59,6 +82,7 @@ class DatabaseSeeder extends Seeder
         Author::create([
             'name' => 'Nadia Ristiviani'
         ]);
+
         Publisher::create([
             'name' => 'Gramedia Pustaka Utama',
             'address' => 'Jakarta'
@@ -83,6 +107,18 @@ class DatabaseSeeder extends Seeder
         ]);
         Category::create([
             'category' => 'Historical'
+        ]);
+        Category::create([
+            'category' => 'Biography'
+        ]);
+        Category::create([
+            'category' => 'Otonom'
+        ]);
+        Category::create([
+            'category' => 'Adventure'
+        ]);
+        Category::create([
+            'category' => 'science'
         ]);
 
 

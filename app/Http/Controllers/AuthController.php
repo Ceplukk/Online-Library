@@ -22,8 +22,8 @@ class AuthController extends Controller
             "title" => "Login Page"
         ]);
     }
-    
-    public function registStore(Request $request)
+
+    public function register(Request $request)
     {
         $validateData = $request->validate([
             "name"      => "required|max:255",
@@ -37,7 +37,7 @@ class AuthController extends Controller
         User::create($validateData);
         return redirect('/login')->with('success', 'Registration Successful!');
     }
-    public function loginUser(Request $request)
+    public function login(Request $request)
     {
         $credentials = $request->validate([
             "email"     => "required|email:dns",
@@ -45,10 +45,24 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
+            if (Auth::user()->level == 'admin') {
+                $request->session()->regenerate();
+                return redirect()->intended('/admin');
+            }else
+            {
+                $request->session()->regenerate();
+                return redirect()->intended('/');
+
+            }
         }
 
         return back()->with('loginError', 'Login Failed');
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        return redirect('/');
     }
 }

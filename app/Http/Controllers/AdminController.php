@@ -15,16 +15,13 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.index',[
-            'books'     => Book::latest()->paginate(5),
-            'author'    => Author::all(),
-            'publisher' => Publisher::all(),
-            'category'  => Category::all()
+            
         ]);
     }
     public function books()
     {
         return view('admin.books', [
-            'books'     => Book::latest()->paginate(5),
+            'books'     => Book::all(),
             'author'    => Author::all(),
             'publisher' => Publisher::all(),
             'category'  => Category::all()
